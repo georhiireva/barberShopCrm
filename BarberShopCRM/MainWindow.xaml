@@ -1,0 +1,53 @@
+﻿<Window x:Class="BarberShopCRM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BarberShopCRM"
+        mc:Ignorable="d"
+        Title="Главное меню" Height="592.776" Width="462.323">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Button Margin="5"
+                Grid.ColumnSpan="2"
+                FontSize="40"
+                Content="Товары" Click="OpenProductsWindow"/>
+        <Button Margin="5"
+                Grid.Row="1"
+                FontSize="40"
+                Content="Закупки" Click="OpenPurchasesWindow"/>
+        <Button Margin="5"
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="40"
+                Content="Списания" Click="OpenWriteOffWindow"/>
+        <Button Margin="5"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                FontSize="40"
+                Content="Остатки" Click="OpenOddmentsWindow"/>
+        <Button Margin="5"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Background="LightPink"
+                FontSize="40"
+                Content="Инвентаризации"/>
+        <Button Margin="5"
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                FontSize="40"
+                Content="Выход"/>
+    </Grid>
+</Window>
