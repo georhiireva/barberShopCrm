@@ -22,7 +22,7 @@
         <Button Grid.Column="1"
                 Margin="5"
                 FontSize="30"
-                Content="Добавить"/>
+                Content="Добавить" Click="OpenWriteOffEditWindow"/>
         <Button Grid.Column="1"
                 Grid.Row="1"
                 Margin="5"

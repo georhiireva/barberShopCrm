@@ -14,17 +14,11 @@ using System.Windows.Shapes;
 
 namespace BarberShopCRM {
     /// <summary>
-    /// Логика взаимодействия для WriteOffWindow.xaml
+    /// Логика взаимодействия для WriteOffEditWindow.xaml
     /// </summary>
-    public partial class WriteOffWindow : Window {
-        private WriteOffEditWindow writeOffEditWindow;
-        public WriteOffWindow () {
+    public partial class WriteOffEditWindow : Window {
+        public WriteOffEditWindow () {
             InitializeComponent ();
-        }
-
-        private void OpenWriteOffEditWindow (object sender, RoutedEventArgs e) {
-            writeOffEditWindow = new WriteOffEditWindow ();
-            writeOffEditWindow.ShowDialog ();
         }
     }
 }

@@ -70,6 +70,9 @@
     <Compile Include="PurchasesWindow.xaml.cs">
       <DependentUpon>PurchasesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WriteOffEditWindow.xaml.cs">
+      <DependentUpon>WriteOffEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WriteOffWindow.xaml.cs">
       <DependentUpon>WriteOffWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PurchasesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WriteOffEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
