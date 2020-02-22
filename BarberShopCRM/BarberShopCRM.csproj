@@ -58,6 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="command\CloseWindowCommand.cs" />
+    <Compile Include="command\Command.cs" />
+    <Compile Include="model\Product.cs" />
+    <Compile Include="model\Purchase.cs" />
+    <Compile Include="model\Unit.cs" />
+    <Compile Include="model\WriteOff.cs" />
     <Compile Include="OddmentsWindow.xaml.cs">
       <DependentUpon>OddmentsWindow.xaml</DependentUpon>
     </Compile>
@@ -70,6 +76,8 @@
     <Compile Include="PurchasesWindow.xaml.cs">
       <DependentUpon>PurchasesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="viewmodel\MainMenuViewModel.cs" />
+    <Compile Include="viewmodel\ViewModel.cs" />
     <Compile Include="WriteOffEditWindow.xaml.cs">
       <DependentUpon>WriteOffEditWindow.xaml</DependentUpon>
     </Compile>
@@ -135,7 +143,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -146,5 +154,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

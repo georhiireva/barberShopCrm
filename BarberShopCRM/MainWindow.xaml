@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:BarberShopCRM.Properties"
         xmlns:local="clr-namespace:BarberShopCRM"
         mc:Ignorable="d"
-        Title="Главное меню" Height="592.776" Width="462.323">
+        Title="{x:Static resx:Resources.mainMenuString}" Height="592.776" Width="462.323">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,31 +24,32 @@
         <Button Margin="5"
                 Grid.ColumnSpan="2"
                 FontSize="40"
-                Content="Товары" Click="OpenProductsWindow"/>
+                Content="{x:Static resx:Resources.productsString}" Command="{Binding OpenProductsWindow}"/>
         <Button Margin="5"
                 Grid.Row="1"
                 FontSize="40"
-                Content="Закупки" Click="OpenPurchasesWindow"/>
+                Content="{x:Static resx:Resources.purchasesString}" Command="{Binding OpenPurchasesWindow}"/>
         <Button Margin="5"
                 Grid.Row="1"
                 Grid.Column="1"
                 FontSize="40"
-                Content="Списания" Click="OpenWriteOffWindow"/>
+                Content="{x:Static resx:Resources.writeOffString}" Command="{Binding OpenWriteOffWindow}"/>
         <Button Margin="5"
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 FontSize="40"
-                Content="Остатки" Click="OpenOddmentsWindow"/>
+                Content="{x:Static resx:Resources.oddmentsString}" Command="{Binding OpenOddmentsWindow}"/>
         <Button Margin="5"
                 Grid.Row="3"
                 Grid.ColumnSpan="2"
                 Background="LightPink"
                 FontSize="40"
-                Content="Инвентаризации"/>
+                Content="{x:Static resx:Resources.inventoryString}"/>
         <Button Margin="5"
                 Grid.Row="5"
                 Grid.ColumnSpan="2"
                 FontSize="40"
-                Content="Выход"/>
+                Command="{Binding ExitCommand}"
+                Content="{x:Static resx:Resources.exitString}"/>
     </Grid>
 </Window>

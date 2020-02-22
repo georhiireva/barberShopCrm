@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:BarberShopCRM.Properties"
         xmlns:local="clr-namespace:BarberShopCRM"
         mc:Ignorable="d"
-        Title="Остатки" Height="357" Width="974">
+        Title="{x:Static resx:Resources.oddmentsString}" Height="357" Width="974">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -22,7 +23,7 @@
         <Button Grid.Column="1"
                 Margin="5"
                 FontSize="30"
-                Content="Главное меню"/>
+                Content="{x:Static resx:Resources.mainMenuString}"/>
 
         <ListView Grid.RowSpan="5"
                   Margin="5">

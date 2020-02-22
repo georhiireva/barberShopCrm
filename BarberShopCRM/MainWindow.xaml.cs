@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BarberShopCRM.viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,28 +23,12 @@ namespace BarberShopCRM {
         private PurchasesWindow purchasesWindow;
         private WriteOffWindow writeOffWindow;
         private OddmentsWindow oddmentsWindow;
+        private MainMenuViewModel viewModel;
+
+        public MainMenuViewModel ViewModel => viewModel;
         public MainWindow () {
             InitializeComponent ();
-        }
-
-        private void OpenProductsWindow (object sender, RoutedEventArgs e) {
-            productsWindow = new ProductsWindow ();
-            productsWindow.ShowDialog ();
-        }
-
-        private void OpenPurchasesWindow (object sender, RoutedEventArgs e) {
-            purchasesWindow = new PurchasesWindow ();
-            purchasesWindow.ShowDialog ();
-        }
-
-        private void OpenWriteOffWindow (object sender, RoutedEventArgs e) {
-            writeOffWindow = new WriteOffWindow ();
-            writeOffWindow.ShowDialog ();
-        }
-
-        private void OpenOddmentsWindow (object sender, RoutedEventArgs e) {
-            oddmentsWindow = new OddmentsWindow ();
-            oddmentsWindow.ShowDialog ();
+            DataContext = viewModel = new MainMenuViewModel (this);
         }
     }
 }
