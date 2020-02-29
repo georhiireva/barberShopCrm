@@ -23,7 +23,7 @@
         <Button Grid.Column="1"
                 Margin="5"
                 FontSize="30"
-                Content="Добавить" Click="OpenAddProductWindow"/>
+                Content="Добавить" Command="{Binding AddProductCommand}"/>
         <Button Grid.Column="1"
                 Grid.Row="1"
                 Margin="5"
@@ -41,8 +41,24 @@
                 Content="Главное меню"/>
 
         <ListView Grid.RowSpan="5"
-                  Margin="5">
-            
+                  Margin="5"
+                  ItemsSource="{Binding Products}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя"
+                                    DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Примечание"
+                                    DisplayMemberBinding="{Binding Note}"/>
+                    <GridViewColumn Header="Ед. изм."
+                                    DisplayMemberBinding="{Binding Unit}"/>
+                    <GridViewColumn Header="Расх. частями"
+                                    DisplayMemberBinding="{Binding Crushable}"/>
+                    <GridViewColumn Header="Допуст. мин. ост."
+                                    DisplayMemberBinding="{Binding MinCountInUnits}"/>
+                    <GridViewColumn Header="Ед. изм. в 1 шт."
+                                    DisplayMemberBinding="{Binding UnitsInOnePieceCount}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>

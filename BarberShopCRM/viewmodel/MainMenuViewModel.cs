@@ -9,12 +9,12 @@ using System.Windows.Input;
 
 namespace BarberShopCRM.viewmodel {
     public class MainMenuViewModel : ViewModel {
-        private MainWindow mainWindow;
-        public MainMenuViewModel (MainWindow mainWindow) => this.mainWindow = mainWindow;
-        public ICommand OpenProductsWindow => new Command (() => new ProductsWindow ().ShowDialog ());
+        public ICommand OpenProductsWindow => new Command (() => new ProductsWindow ().Show ());
         public ICommand OpenPurchasesWindow => new Command (() => new PurchasesWindow ().ShowDialog ());
         public ICommand OpenWriteOffWindow => new Command (() => new WriteOffWindow ().ShowDialog ());
         public ICommand OpenOddmentsWindow => new Command (() => new OddmentsWindow ().ShowDialog ());
-        public ICommand ExitCommand => new CloseWindowCommand (mainWindow);
+
+        public MainMenuViewModel (Window mainWindow) : base (mainWindow) { }
+        
     }
 }

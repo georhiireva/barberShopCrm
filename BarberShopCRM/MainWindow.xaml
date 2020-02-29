@@ -38,7 +38,7 @@
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 FontSize="40"
-                Content="{x:Static resx:Resources.oddmentsString}" Command="{Binding OpenOddmentsWindow}"/>
+                Content="{x:Static resx:Resources.oddmentsString}" Command="{Binding OpenOddmentsWindow}" Click="Button_Click"/>
         <Button Margin="5"
                 Grid.Row="3"
                 Grid.ColumnSpan="2"

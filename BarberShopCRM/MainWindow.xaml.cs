@@ -1,6 +1,7 @@
 ﻿using BarberShopCRM.viewmodel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,16 +20,16 @@ namespace BarberShopCRM {
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        private ProductsWindow productsWindow;
-        private PurchasesWindow purchasesWindow;
-        private WriteOffWindow writeOffWindow;
-        private OddmentsWindow oddmentsWindow;
         private MainMenuViewModel viewModel;
 
         public MainMenuViewModel ViewModel => viewModel;
         public MainWindow () {
             InitializeComponent ();
             DataContext = viewModel = new MainMenuViewModel (this);
+        }
+
+        private void Button_Click (object sender, RoutedEventArgs e) {
+            using (var writer = File.CreateText ("path")) { }
         }
     }
 }

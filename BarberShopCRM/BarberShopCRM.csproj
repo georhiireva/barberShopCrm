@@ -58,8 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="command\CloseWindowCommand.cs" />
     <Compile Include="command\Command.cs" />
+    <Compile Include="exception\DatabaseDuplicateException.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="model\database\Query.cs" />
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Purchase.cs" />
     <Compile Include="model\Unit.cs" />
@@ -77,6 +79,8 @@
       <DependentUpon>PurchasesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="viewmodel\MainMenuViewModel.cs" />
+    <Compile Include="viewmodel\ProductEditViewModel.cs" />
+    <Compile Include="viewmodel\ProductsViewModel.cs" />
     <Compile Include="viewmodel\ViewModel.cs" />
     <Compile Include="WriteOffEditWindow.xaml.cs">
       <DependentUpon>WriteOffEditWindow.xaml</DependentUpon>

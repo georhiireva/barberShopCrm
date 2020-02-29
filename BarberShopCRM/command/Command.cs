@@ -18,7 +18,12 @@ namespace BarberShopCRM.command {
         }
 
         virtual public void Execute (object parameter) {
-            execute ();
+            try {
+                execute ();
+            } catch (Exception e) {
+                MessageBox.Show (e.Message,"Ошибка");
+            }
+            
         }
     }
 }
