@@ -1,38 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
   <product>
-    <Name>Олег</Name>
-    <Note>Заметка</Note>
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>Олега</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>питухз</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>ппп</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
     <Name>gbg</Name>
     <Note />
     <Unit>Mg</Unit>

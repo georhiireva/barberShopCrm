@@ -1,4 +1,5 @@
-﻿using BarberShopCRM.viewmodel;
+﻿using BarberShopCRM.model;
+using BarberShopCRM.viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,12 @@ namespace BarberShopCRM {
     public partial class ProductsWindow : Window {
         private Window productEditWindow;
         private ProductsViewModel viewModel;
+
+        public Product SelectedProduct => (Product)this.productsListView.SelectedItem;
+
         public ProductsWindow () {
             InitializeComponent ();
             DataContext = viewModel = new ProductsViewModel (this);
-        }
-
-        private void OpenEditProductWindow (object sender, RoutedEventArgs e) {
-
-        }
-
-        private void OpenAddProductWindow (object sender, RoutedEventArgs e) {
-            productEditWindow = new ProductEditWindow ();
-            productEditWindow.ShowDialog ();
         }
     }
 }

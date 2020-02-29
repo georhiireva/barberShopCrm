@@ -15,10 +15,11 @@ namespace BarberShopCRM.viewmodel {
         private Logger logger;
         private ICommand deleteProductCommand;
         private ICommand addProductCommand;
-        public ICommand DeleteProductCommand => deleteProductCommand;
-        public ICommand AddProductCommand => addProductCommand;
-
         private IEnumerable<Product> products;
+        
+        public ICommand AddProductCommand => addProductCommand;
+        public ICommand DeleteProductCommand => deleteProductCommand;
+
         public IEnumerable<Product> Products {
             get => products;
             set {
@@ -29,30 +30,37 @@ namespace BarberShopCRM.viewmodel {
 
             }
         }
-        public ProductsViewModel (Window window) : base (window) {
-            logger = new Logger (this.GetType ().Name);
-            loadProducts ();
-            addProductCommand = new Command (() => AddProduct ());
+
+        private Product SelectedProduct => ((ProductsWindow)window).SelectedProduct;
+
+        public ProductsViewModel(Window window) : base(window)
+        {
+            logger = new Logger(this.GetType().Name);
+            LoadProducts();
+            addProductCommand = new Command(() => AddProduct());
+            deleteProductCommand = new Command(() => DeleteProduct());
         }
 
         private void AddProduct () {
             var newWindow = new ProductEditWindow ();
           
             if (newWindow.ShowDialog() == true) {
-               loadProducts ();
+               LoadProducts ();
             }
         }
 
-        private void loadProducts () {
+        private void LoadProducts () {
             Products = new List<Product> (Query.Instance.LoadAllProducts ());
-            logger.log (nameof (loadProducts), $"Загружено продуктов - {products.Count ()}");
+            logger.log (nameof (LoadProducts), $"Загружено продуктов - {products.Count ()}");
         }
 
-        private void deleteProduct () {
-            if (MessageBox.Show ("Внимание", "Вы действительно хотите удалить продукт?", MessageBoxButton.YesNo) == MessageBoxResult.No)
+        private void DeleteProduct () {
+            var removableProductName = SelectedProduct.Name;
+            if (MessageBox.Show ($"Вы действительно хотите удалить {removableProductName}?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.No)
                 return;
             else {
-
+                Query.Instance.DeleteProduct(removableProductName);
+                LoadProducts();
             }
         }
     }

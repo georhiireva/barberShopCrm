@@ -28,11 +28,12 @@
                 Grid.Row="1"
                 Margin="5"
                 FontSize="30"
-                Content="Изменить" Click="OpenEditProductWindow"/>
+                Content="Изменить"/>
         <Button Grid.Column="1"
                 Grid.Row="2"
                 Margin="5"
                 FontSize="30"
+                Command="{Binding DeleteProductCommand}"
                 Content="Удалить"/>
         <Button Grid.Column="1"
                 Grid.Row="4"
@@ -41,6 +42,7 @@
                 Content="Главное меню"/>
 
         <ListView Grid.RowSpan="5"
+                  x:Name="productsListView"
                   Margin="5"
                   ItemsSource="{Binding Products}">
             <ListView.View>
