@@ -16,6 +16,7 @@ namespace BarberShopCRM.model.database {
         private const string PurchaseFileName = "Purchase.xml";
         private const string WriteOffFileName = "WriteOff.xml";
         private static Query instance;
+        private XElement xml;
         private Logger logger;
 
         public static Query Instance {
@@ -31,10 +32,10 @@ namespace BarberShopCRM.model.database {
         private Query () {
             instance = this;
             logger = new Logger (this.GetType ().Name);
+            xml = LoadAllProductsAsXElement ();
         }
 
         public IEnumerable<Product> LoadAllProducts () {
-            XElement xml = LoadAllProductsAsXElement ();
             return
                 from elt in xml.Elements ()
                 select new Product () {
@@ -47,77 +48,75 @@ namespace BarberShopCRM.model.database {
                 };
         }
 
-        public bool SaveProduct(Product product)
-        {
-            XElement xml = LoadAllProductsAsXElement();
-            if (IsProductExist(product.Name, xml))
-            {
-                throw new DatabaseDuplicateException("Продукт с таким именем уже существует!");
+        public bool SaveProduct (Product product) {
+            if (IsProductExist (product.Name)) {
+                throw new DatabaseDuplicateException ("Продукт с таким именем уже существует!");
             }
 
-            var xmlProduct = MapProduct(product);
-            xml.Add(xmlProduct);
-            try
-            {
-                xml.Save(ProductFilePath);
+            var xmlProduct = MapProduct (product);
+            xml.Add (xmlProduct);
+            try {
+                xml.Save (ProductFilePath);
             }
-            catch (XmlException e)
-            {
-                logger.log(e.Message);
+            catch (XmlException e) {
+                logger.log (e.Message);
                 return false;
             }
             return true;
         }
 
-        public bool DeleteProduct(string productName)
-        {
-            XElement xml = LoadAllProductsAsXElement();
-            if (!IsProductExist(productName, xml))
-            {
-                return false;
+        public bool DeleteProduct (string productName) {
+            if (!IsProductExist (productName)) {
+                throw new DatabaseNotFoundException ($"Продукт {productName} не найден в базе данных");
             }
-
-            var removableProduct = xml.Elements().Where(elt => (string)elt.Element("Name") == productName).First();
-            removableProduct.Remove();
-            xml.Save(ProductFilePath);
+            XElement removableProduct = FindProductByName (productName);
+            removableProduct.Remove ();
+            xml.Save (ProductFilePath);
             return true;
         }
 
-        public bool ReplaceProduct (Product product)
-        {
-            XElement xml = LoadAllProductsAsXElement();
-            xml.ReplaceNodes()
+        public bool ReplaceProduct (Product oldProduct, Product newProduct) {
+            if (!IsProductExist (oldProduct.Name)) {
+                throw new DatabaseNotFoundException ($"Продукт {oldProduct.Name} не найден в базе данных");
+            }
+            var oldProductXml = FindProductByName (oldProduct.Name);
+            var newProductXml = MapProduct (newProduct);
+            oldProductXml.Remove ();
+            SaveProduct (newProduct);
+           // xml.Add (newProductXml);
+            return true;
         }
 
-        private XElement 
+        private XElement FindProductByName (string productName) {
+            return xml.Elements ().Where (elt => (string)elt.Element ("Name") == productName).First ();
+        }
 
-        private XElement MapProduct (Product product)
-        {
-            return new XElement(
+        private XElement MapProduct (Product product) {
+            return new XElement (
                 "product",
-                new XElement(
+                new XElement (
                     "Name",
                     product.Name),
-                new XElement(
+                new XElement (
                     "Note",
                     product.Note),
-                new XElement(
+                new XElement (
                     "Unit",
                     product.Unit),
-                new XElement(
+                new XElement (
                     "Crushable",
                     product.Crushable),
-                new XElement(
+                new XElement (
                     "MinCountInUnits",
                     product.MinCountInUnits),
-                new XElement(
+                new XElement (
                     "UnitsInOnePieceCount",
                     product.UnitsInOnePieceCount)
                 );
         }
 
-        private bool IsProductExist (string productName, XElement products) {
-            var duplicate = products.Descendants ("Name").Where (elt => (string)elt == productName);
+        private bool IsProductExist (string productName) {
+            var duplicate = xml.Descendants ("Name").Where (elt => (string)elt == productName);
             return duplicate.Count () != 0;
         }
 

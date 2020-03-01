@@ -7,6 +7,7 @@
         xmlns:resx="clr-namespace:BarberShopCRM.Properties"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:wpf="http://schemas.microsoft.com/netfx/2007/xaml/presentation" 
+        xmlns:lib="clr-namespace:eisiWare;assembly=NumericUpDown"
         mc:Ignorable="d"
         Title="ProductEditWindow" Height="567" Width="596">
     <Grid>
@@ -59,17 +60,22 @@
             <Label Content="Расходуется частями"
                    FontSize="20"/>
         </CheckBox>
-        <WindowsFormsHost Grid.Column="1"
+        <lib:NumericUpDown Grid.Column="1"
                           Grid.Row="3"
+                           x:Name="numeric"
                           Margin="20"
+                          Value="{Binding UnitsInOnePieceCount}"
                           HorizontalAlignment="Left"
                           Width="150">
-            <wf:NumericUpDown/>
-        </WindowsFormsHost>
+        </lib:NumericUpDown>
+        <TextBox Grid.Row="5"
+                 Text="{Binding ElementName=numeric, Path=Value}"/>
         <ComboBox Grid.Column="1"
                   Grid.Row="4"
                   Margin="20"
                   Width="150"
+                  ItemsSource="{Binding Units}"
+                  SelectedItem="{Binding Unit}"
                   HorizontalAlignment="Left"/>
         <Button Grid.Row="6"
                 Margin="5"
@@ -81,6 +87,7 @@
                 Grid.Column="1"
                 Margin="5, 5, 100, 5"
                 FontSize="25"
+                Command="{Binding ExitCommand}"
                 Content="Отменить"/>
     </Grid>
 </Window>

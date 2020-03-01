@@ -28,6 +28,7 @@
                 Grid.Row="1"
                 Margin="5"
                 FontSize="30"
+                Command="{Binding EditProductCommand}"
                 Content="Изменить"/>
         <Button Grid.Column="1"
                 Grid.Row="2"
@@ -39,6 +40,7 @@
                 Grid.Row="4"
                 Margin="5"
                 FontSize="30"
+                Command="{Binding ExitComand}"
                 Content="Главное меню"/>
 
         <ListView Grid.RowSpan="5"

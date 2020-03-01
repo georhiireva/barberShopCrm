@@ -1,4 +1,5 @@
 ﻿using BarberShopCRM.command;
+using BarberShopCRM.exception;
 using BarberShopCRM.model;
 using BarberShopCRM.model.database;
 using System;
@@ -11,87 +12,105 @@ using System.Windows.Input;
 
 namespace BarberShopCRM.viewmodel {
     class ProductEditViewModel : ViewModel {
-        private Product tempProduct;
+        private Product editingProduct;
+        private Product startStateProduct;
         private ICommand addProductCommand;
         public ICommand AddProductCommand => addProductCommand;
 
-        public string Name { get => tempProduct.Name;
+        public string Name { get => editingProduct.Name;
             set {
-                if (tempProduct.Name != value) {
-                    tempProduct.Name = value;
+                if (editingProduct.Name != value) {
+                    editingProduct.Name = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (Name)));
                 }
             }
         }
         public string Note {
-            get => tempProduct.Note;
+            get => editingProduct.Note;
             set {
-                if (tempProduct.Note != value) {
-                    tempProduct.Note = value;
+                if (editingProduct.Note != value) {
+                    editingProduct.Note = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (Note)));
                 }
             }
         }
         public Unit Unit {
-            get => tempProduct.Unit;
+            get => editingProduct.Unit;
             set {
-                if (tempProduct.Unit != value) {
-                    tempProduct.Unit = value;
+                if (editingProduct.Unit != value) {
+                    editingProduct.Unit = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (Unit)));
                 }
             }
         }
         public bool Crushable {
-            get => tempProduct.Crushable;
+            get => editingProduct.Crushable;
             set {
-                if (tempProduct.Crushable != value) {
-                    tempProduct.Crushable = value;
+                if (editingProduct.Crushable != value) {
+                    editingProduct.Crushable = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (Crushable)));
                 }
             }
         }
         public int MinCountInUnits {
-            get => tempProduct.MinCountInUnits;
+            get => editingProduct.MinCountInUnits;
             set {
-                if (tempProduct.MinCountInUnits != value) {
-                    tempProduct.MinCountInUnits = value;
+                if (editingProduct.MinCountInUnits != value) {
+                    editingProduct.MinCountInUnits = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (MinCountInUnits)));
                 }
             }
         }
         public int CountInUnits {
-            get => tempProduct.MinCountInUnits;
+            get => editingProduct.CountInUnits;
             set {
-                if (tempProduct.CountInUnits != value) {
-                    tempProduct.CountInUnits = value;
+                if (editingProduct.CountInUnits != value) {
+                    editingProduct.CountInUnits = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (CountInUnits)));
                 }
             }
         }
         public int UnitsInOnePieceCount {
-            get => tempProduct.MinCountInUnits;
+            get => editingProduct.UnitsInOnePieceCount;
             set {
-                if (tempProduct.UnitsInOnePieceCount != value) {
-                    tempProduct.UnitsInOnePieceCount = value;
+                if (editingProduct.UnitsInOnePieceCount != value) {
+                    editingProduct.UnitsInOnePieceCount = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (UnitsInOnePieceCount)));
                 }
             }
         }
 
+        public Unit[] Units {
+            get {
+                return (Unit[]) Enum.GetValues (typeof (Unit));
+            }
+        }
         
         public ProductEditViewModel (Window window, Product product) : base (window) {
-            tempProduct = product;
+            editingProduct = product.Clone ();
+            startStateProduct = product;
+            addProductCommand = new Command (() => ReplaceProduct ());
         }
 
         public ProductEditViewModel (Window window) : base (window) {
-            tempProduct = new Product ();
+            editingProduct = new Product ();
             addProductCommand = new Command (() => AddProduct ());
             logger.log (nameof (ProductEditViewModel), "Вызван конструкор с одним параметром. Временный продукт создан.");
         }
 
         private void AddProduct () {
-            Query.Instance.SaveProduct (tempProduct);
+            Query.Instance.SaveProduct (editingProduct);
             window.DialogResult = true;
+        }
+
+        private void ReplaceProduct () {
+            try {
+                Query.Instance.ReplaceProduct (startStateProduct, editingProduct);
+                window.DialogResult = true;
+            } catch (DatabaseNotFoundException e) {
+                MessageBox.Show (e.Message, "Ошибка");
+                window.DialogResult = false;
+            }
         }
     }
 }
