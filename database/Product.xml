@@ -1,123 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
-  <product>
-    <Name>dsdadadaaaaaa</Name>
+  <Product>
+    <Id>5b4be8f7-4a55-4584-a6cf-fde58332e8af</Id>
+    <Name>222222</Name>
     <Note />
     <Unit>Mg</Unit>
     <Crushable>false</Crushable>
     <MinCountInUnits>0</MinCountInUnits>
     <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>yyuiioooo</Name>
+  </Product>
+  <Product>
+    <Id>f19c84e7-b2a7-47fb-89b4-1a8427fec632</Id>
+    <Name>33333</Name>
     <Note />
     <Unit>Mg</Unit>
     <Crushable>false</Crushable>
     <MinCountInUnits>0</MinCountInUnits>
     <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>oiioioioi</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>sdasda</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>olegich</Name>
-    <Note></Note>
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>whu</Name>
-    <Note>2222</Note>
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>wwwwwee</Name>
-    <Note></Note>
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>молоток</Name>
-    <Note></Note>
-    <Unit>Kg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>ccccc</Name>
-    <Note>qweqwq</Note>
-    <Unit>G</Unit>
-    <Crushable>true</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>dsdsa</Name>
-    <Note>adadaaada</Note>
-    <Unit>G</Unit>
-    <Crushable>true</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>alalala</Name>
-    <Note />
-    <Unit>Kg</Unit>
-    <Crushable>true</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>dddddddddddd</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>ereerreree</Name>
-    <Note>13131</Note>
-    <Unit>Mg</Unit>
-    <Crushable>true</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name>aaaaa</Name>
-    <Note>ddddd</Note>
-    <Unit>Mg</Unit>
-    <Crushable>true</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
-  <product>
-    <Name />
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>false</Crushable>
-    <MinCountInUnits>0</MinCountInUnits>
-    <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
-  </product>
+  </Product>
 </Products>

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:BarberShopCRM"
         xmlns:resx="clr-namespace:BarberShopCRM.Properties"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
-        xmlns:wpf="http://schemas.microsoft.com/netfx/2007/xaml/presentation" 
-        xmlns:lib="clr-namespace:eisiWare;assembly=NumericUpDown"
+        xmlns:wpf="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:controllib="clr-namespace:ControlLib;assembly=NumericUpDown"
         mc:Ignorable="d"
         Title="ProductEditWindow" Height="567" Width="596">
     <Grid>
@@ -44,6 +44,11 @@
                Content="Единица измерения:"
                FontSize="20"
                Margin="5"/>
+        <Label Grid.Row="5"
+               VerticalContentAlignment="Center"
+               Content="Мин. остаток шт.:"
+               FontSize="20"
+               Margin="5"/>
 
         <TextBox Grid.Column="1"
                  Margin="20"
@@ -60,16 +65,13 @@
             <Label Content="Расходуется частями"
                    FontSize="20"/>
         </CheckBox>
-        <lib:NumericUpDown Grid.Column="1"
+        <controllib:NumericUpDown Grid.Column="1"
                           Grid.Row="3"
-                           x:Name="numeric"
                           Margin="20"
-                          Value="{Binding UnitsInOnePieceCount}"
                           HorizontalAlignment="Left"
-                          Width="150">
-        </lib:NumericUpDown>
-        <TextBox Grid.Row="5"
-                 Text="{Binding ElementName=numeric, Path=Value}"/>
+                          Width="150"
+                          Value="{Binding UnitsInOnePieceCount, Mode=TwoWay}">
+        </controllib:NumericUpDown>
         <ComboBox Grid.Column="1"
                   Grid.Row="4"
                   Margin="20"
@@ -77,6 +79,13 @@
                   ItemsSource="{Binding Units}"
                   SelectedItem="{Binding Unit}"
                   HorizontalAlignment="Left"/>
+        <controllib:NumericUpDown Grid.Column="1"
+                          Grid.Row="5"
+                          Margin="20"
+                          HorizontalAlignment="Left"
+                          Width="150"
+                          Value="{Binding MinCountInUnits, Mode=TwoWay}">
+        </controllib:NumericUpDown>
         <Button Grid.Row="6"
                 Margin="5"
                 FontSize="25"
@@ -85,7 +94,7 @@
                 x:Name="addButton"/>
         <Button Grid.Row="6"
                 Grid.Column="1"
-                Margin="5, 5, 100, 5"
+                Margin="5"
                 FontSize="25"
                 Command="{Binding ExitCommand}"
                 Content="Отменить"/>

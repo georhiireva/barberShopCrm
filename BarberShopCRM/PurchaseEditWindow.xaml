@@ -64,10 +64,10 @@
                     Grid.Row="6"
                     VerticalAlignment="Center"
                     Margin="15, 5, 15, 5"/>
-        <!--<DatePicker Grid.Column="1"
+        <DatePicker Grid.Column="1"
                     Grid.Row="7"
                     VerticalAlignment="Center"
-                    Margin="15, 5, 15, 5"/>-->
+                    Margin="15, 5, 15, 5"/>
         <TextBlock Grid.Column="2"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
@@ -89,6 +89,8 @@
                   Grid.Row="1"
                   HorizontalAlignment="Left"
                   Width="120"
+                  x:Name="availProductsComboBox"
+                  ItemsSource="{Binding AvailibleProducts}"
                   Margin="15"/>
         <WindowsFormsHost Grid.Column="3"
                           Grid.Row="2"

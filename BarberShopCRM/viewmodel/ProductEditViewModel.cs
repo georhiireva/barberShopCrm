@@ -99,13 +99,13 @@ namespace BarberShopCRM.viewmodel {
         }
 
         private void AddProduct () {
-            Query.Instance.SaveProduct (editingProduct);
+             Query.Instance.Add (editingProduct);
             window.DialogResult = true;
         }
 
         private void ReplaceProduct () {
             try {
-                Query.Instance.ReplaceProduct (startStateProduct, editingProduct);
+                Query.Instance.Replace (startStateProduct, editingProduct);
                 window.DialogResult = true;
             } catch (DatabaseNotFoundException e) {
                 MessageBox.Show (e.Message, "Ошибка");

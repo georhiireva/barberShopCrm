@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NumericUpDown, Version=0.1.6.1, Culture=neutral, PublicKeyToken=74df933eb4e7b0ca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\WPFNumericUpDown\sourceCode\NumericUpDown\bin\Debug\NumericUpDown.dll</HintPath>
+    <Reference Include="NumericUpDown, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NumericUpDown.3.0.2\lib\NumericUpDown.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -66,8 +65,12 @@
     <Compile Include="exception\DatabaseDuplicateException.cs" />
     <Compile Include="exception\DatabaseNotFoundException.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="model\AbstractXmlHolder.cs" />
+    <Compile Include="model\Constants.cs" />
     <Compile Include="model\database\Query.cs" />
     <Compile Include="model\IClonable.cs" />
+    <Compile Include="model\IXmlHolder.cs" />
+    <Compile Include="model\IXmlStorable.cs" />
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Purchase.cs" />
     <Compile Include="model\Unit.cs" />
@@ -87,6 +90,8 @@
     <Compile Include="viewmodel\MainMenuViewModel.cs" />
     <Compile Include="viewmodel\ProductEditViewModel.cs" />
     <Compile Include="viewmodel\ProductsViewModel.cs" />
+    <Compile Include="viewmodel\PurchaseEditViewModel.cs" />
+    <Compile Include="viewmodel\PurchasesViewModel.cs" />
     <Compile Include="viewmodel\ViewModel.cs" />
     <Compile Include="WriteOffEditWindow.xaml.cs">
       <DependentUpon>WriteOffEditWindow.xaml</DependentUpon>
@@ -156,6 +161,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

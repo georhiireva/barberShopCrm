@@ -61,12 +61,12 @@ namespace BarberShopCRM.viewmodel {
             }
         }
         private void DeleteProduct () {
-            var removableProductName = SelectedProduct.Name;
-            if (MessageBox.Show ($"Вы действительно хотите удалить {removableProductName}?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            var removableProduct = SelectedProduct;
+            if (MessageBox.Show ($"Вы действительно хотите удалить {removableProduct.Name}?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.No)
                 return;
             else {
                 try {
-                    Query.Instance.DeleteProduct (removableProductName);
+                    Query.Instance.Delete (removableProduct);
                 } catch (DatabaseNotFoundException e) {
                     MessageBox.Show (e.Message, "Ошибка");
                 }

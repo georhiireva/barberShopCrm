@@ -19,7 +19,6 @@ namespace BarberShopCRM {
     /// Логика взаимодействия для ProductsWindow.xaml
     /// </summary>
     public partial class ProductsWindow : Window {
-        private Window productEditWindow;
         private ProductsViewModel viewModel;
 
         public Product SelectedProduct => (Product)this.productsListView.SelectedItem;

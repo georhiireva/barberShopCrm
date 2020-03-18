@@ -10,14 +10,12 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace BarberShopCRM.model.database {
-    class Query {
-        private const string DatabaseDirectoryPath = @"..\..\..\database";
-        private const string ProductFileName = "Product.xml";
-        private const string PurchaseFileName = "Purchase.xml";
-        private const string WriteOffFileName = "WriteOff.xml";
+    class Query : AbstractXmlHolder {
         private static Query instance;
-        private XElement xml;
         private Logger logger;
+        private string ProductFilePath { get; } = Path.Combine (Constants.DatabaseDirectoryPath, Constants.ProductFileName);
+        private string PurchaseFilePath { get; } = Path.Combine (Constants.DatabaseDirectoryPath, Constants.PurchaseFileName);
+        private string WriteOffFilePath { get; } = Path.Combine (Constants.DatabaseDirectoryPath, Constants.WriteOffFileName);
 
         public static Query Instance {
             get {
@@ -25,107 +23,32 @@ namespace BarberShopCRM.model.database {
             }
         }
 
-        private string ProductFilePath { get; } = Path.Combine (DatabaseDirectoryPath, ProductFileName);
-        private string PurchaseFilePath { get; } = Path.Combine (DatabaseDirectoryPath, PurchaseFileName);
-        private string WriteOffFilePath { get; } = Path.Combine (DatabaseDirectoryPath, WriteOffFileName);
-
         private Query () {
             instance = this;
             logger = new Logger (this.GetType ().Name);
-            xml = LoadAllProductsAsXElement ();
         }
 
+        //Метод загружает все записи из файла с продукатми и возвращает коллекцию Product
         public IEnumerable<Product> LoadAllProducts () {
+            var rows = LoadFile (ProductFilePath, "Products").Elements ();
             return
-                from elt in xml.Elements ()
-                select new Product () {
-                    Name = (string)elt.Element ("Name"),
-                    Note = (string)elt.Element ("Note"),
-                    Unit = (Unit)Enum.Parse (typeof (Unit), ((string)elt.Element ("Unit"))),
-                    Crushable = (bool)elt.Element ("Crushable"),
-                    MinCountInUnits = (int)elt.Element ("MinCountInUnits"),
-                    UnitsInOnePieceCount = (int)elt.Element ("UnitsInOnePieceCount")
-                };
+                from elt in rows
+                select new Product ().MapFromXml (elt) as Product;
         }
 
-        public bool SaveProduct (Product product) {
-            if (IsProductExist (product.Name)) {
-                throw new DatabaseDuplicateException ("Продукт с таким именем уже существует!");
-            }
-
-            var xmlProduct = MapProduct (product);
-            xml.Add (xmlProduct);
-            try {
-                xml.Save (ProductFilePath);
-            }
-            catch (XmlException e) {
-                logger.log (e.Message);
-                return false;
-            }
-            return true;
+        //Метод загружает все записи из файла с закупками и возвращает коллекцию Purchase
+        public IEnumerable<Purchase> LoadAllPurchases () {
+            var rows = LoadFile (PurchaseFilePath, "Purchases").Elements ();
+            return
+                from elt in rows
+                select new Purchase ().MapFromXml (elt) as Purchase;
         }
 
-        public bool DeleteProduct (string productName) {
-            if (!IsProductExist (productName)) {
-                throw new DatabaseNotFoundException ($"Продукт {productName} не найден в базе данных");
-            }
-            XElement removableProduct = FindProductByName (productName);
-            removableProduct.Remove ();
-            xml.Save (ProductFilePath);
-            return true;
-        }
+        private XElement LoadFile (string filePath, string root) {
+            if (!File.Exists (filePath))
+                new XElement (root).Save (filePath);
 
-        public bool ReplaceProduct (Product oldProduct, Product newProduct) {
-            if (!IsProductExist (oldProduct.Name)) {
-                throw new DatabaseNotFoundException ($"Продукт {oldProduct.Name} не найден в базе данных");
-            }
-            var oldProductXml = FindProductByName (oldProduct.Name);
-            var newProductXml = MapProduct (newProduct);
-            oldProductXml.Remove ();
-            SaveProduct (newProduct);
-           // xml.Add (newProductXml);
-            return true;
-        }
-
-        private XElement FindProductByName (string productName) {
-            return xml.Elements ().Where (elt => (string)elt.Element ("Name") == productName).First ();
-        }
-
-        private XElement MapProduct (Product product) {
-            return new XElement (
-                "product",
-                new XElement (
-                    "Name",
-                    product.Name),
-                new XElement (
-                    "Note",
-                    product.Note),
-                new XElement (
-                    "Unit",
-                    product.Unit),
-                new XElement (
-                    "Crushable",
-                    product.Crushable),
-                new XElement (
-                    "MinCountInUnits",
-                    product.MinCountInUnits),
-                new XElement (
-                    "UnitsInOnePieceCount",
-                    product.UnitsInOnePieceCount)
-                );
-        }
-
-        private bool IsProductExist (string productName) {
-            var duplicate = xml.Descendants ("Name").Where (elt => (string)elt == productName);
-            return duplicate.Count () != 0;
-        }
-
-        private XElement LoadAllProductsAsXElement () {
-            if (!File.Exists (ProductFilePath)) {
-                var emptyXMl = new XElement ("Products");
-                emptyXMl.Save (ProductFilePath);
-            }
-            return XElement.Load (ProductFilePath);
+            return XElement.Load (filePath);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BarberShopCRM.model;
+using BarberShopCRM.viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +19,11 @@ namespace BarberShopCRM {
     /// Логика взаимодействия для PurchasesWindow.xaml
     /// </summary>
     public partial class PurchasesWindow : Window {
-        private PurchaseEditWindow purchaseEditWindow;
+        private PurchasesViewModel viewModel;
+        public Purchase SelectedPurchase => (Purchase)this.purchaseList.SelectedItem;
         public PurchasesWindow () {
             InitializeComponent ();
-        }
-
-        private void OpenPurchaseEditWindow (object sender, RoutedEventArgs e) {
-            purchaseEditWindow = new PurchaseEditWindow ();
-            purchaseEditWindow.ShowDialog ();
+            DataContext = viewModel = new PurchasesViewModel (this);
         }
     }
 }

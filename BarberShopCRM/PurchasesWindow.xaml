@@ -23,26 +23,38 @@
         <Button Grid.Column="1"
                 Margin="5"
                 FontSize="30"
-                Content="Добавить" Click="OpenPurchaseEditWindow"/>
+                Command="{Binding AddPurchaseCommand}"
+                Content="Добавить"/>
         <Button Grid.Column="1"
                 Grid.Row="1"
                 Margin="5"
                 FontSize="30"
+                Command="{Binding EditPurchaseCommand}"
                 Content="Изменить"/>
         <Button Grid.Column="1"
                 Grid.Row="2"
                 Margin="5"
                 FontSize="30"
+                Command="{Binding DeletePurchasetCommand}"
                 Content="Удалить"/>
         <Button Grid.Column="1"
                 Grid.Row="4"
                 Margin="5"
                 FontSize="30"
+                Command="{Binding ExitCommand}"
                 Content="Главное меню"/>
 
         <ListView Grid.RowSpan="5"
-                  Margin="5">
-
+                  Margin="5"
+                  x:Name="purchaseList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Оплатили"/>
+                    <GridViewColumn Header="Получили"/>
+                    <GridViewColumn Header="Товары"/>
+                    <GridViewColumn Header="Цена"/>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>
