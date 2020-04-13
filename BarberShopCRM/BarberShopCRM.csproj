@@ -72,6 +72,7 @@
     <Compile Include="model\IXmlHolder.cs" />
     <Compile Include="model\IXmlStorable.cs" />
     <Compile Include="model\Product.cs" />
+    <Compile Include="model\ProductWrapper.cs" />
     <Compile Include="model\Purchase.cs" />
     <Compile Include="model\Unit.cs" />
     <Compile Include="model\WriteOff.cs" />

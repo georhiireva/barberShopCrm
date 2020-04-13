@@ -46,13 +46,18 @@
 
         <ListView Grid.RowSpan="5"
                   Margin="5"
+                  ItemsSource="{Binding Purchases}"
                   x:Name="purchaseList">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Оплатили"/>
-                    <GridViewColumn Header="Получили"/>
-                    <GridViewColumn Header="Товары"/>
-                    <GridViewColumn Header="Цена"/>
+                    <GridViewColumn Header="Оплатили"
+                                    DisplayMemberBinding="{Binding PaymentDate}"/>
+                    <GridViewColumn Header="Получили"
+                                    DisplayMemberBinding="{Binding ReceptionDate}"/>
+                    <GridViewColumn Header="Товары"
+                                    DisplayMemberBinding="{Binding Products}"/>
+                    <GridViewColumn Header="Цена"
+                                    DisplayMemberBinding="{Binding Price}"/>
                 </GridView>
             </ListView.View>
         </ListView>

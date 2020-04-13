@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Purchases>
+  <Purchase>
+    <Id>380f62d6-aa4f-4914-80b1-83617b544574</Id>
+    <Products>
+      <Product Price="0" Count="3">
+        <Id>5656b9fb-77cd-4e33-b05a-3cd6e6d52483</Id>
+        <Name>Краска для волос</Name>
+        <Note></Note>
+        <Unit>Mg</Unit>
+        <Crushable>true</Crushable>
+        <MinCountInUnits>10</MinCountInUnits>
+        <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
+      </Product>
+      <Product Price="0" Count="3">
+        <Id>d192d332-0796-465f-90ba-f210c926b224</Id>
+        <Name>Бумажное полотенце</Name>
+        <Note></Note>
+        <Unit>Piece</Unit>
+        <Crushable>false</Crushable>
+        <MinCountInUnits>50</MinCountInUnits>
+        <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
+      </Product>
+    </Products>
+    <PaymentDate>0001-01-01T00:00:00</PaymentDate>
+    <ReceptionDate>0001-01-01T00:00:00</ReceptionDate>
+  </Purchase>
+  <Purchase>
+    <Id>3c8f87ae-d110-4179-b464-3bb8f2b49628</Id>
+    <Products>
+      <Product Price="0" Count="5">
+        <Id>5656b9fb-77cd-4e33-b05a-3cd6e6d52483</Id>
+        <Name>Краска для волос</Name>
+        <Note></Note>
+        <Unit>Mg</Unit>
+        <Crushable>true</Crushable>
+        <MinCountInUnits>10</MinCountInUnits>
+        <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
+      </Product>
+    </Products>
+    <PaymentDate>2018-02-02T00:00:00</PaymentDate>
+    <ReceptionDate>0001-01-01T00:00:00</ReceptionDate>
+  </Purchase>
+  <Purchase>
+    <Id>b3235be7-a1c8-45f4-b13f-ba732f1c7173</Id>
+    <Products>
+      <Product Price="0" Count="3">
+        <Id>5656b9fb-77cd-4e33-b05a-3cd6e6d52483</Id>
+        <Name>Краска для волос</Name>
+        <Note></Note>
+        <Unit>Mg</Unit>
+        <Crushable>true</Crushable>
+        <MinCountInUnits>10</MinCountInUnits>
+        <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
+      </Product>
+    </Products>
+    <PaymentDate>2018-01-01T00:00:00</PaymentDate>
+    <ReceptionDate>0001-01-01T00:00:00</ReceptionDate>
+  </Purchase>
+  <Purchase>
+    <Id>f934d59f-54c4-4bd2-96e5-385833574431</Id>
+    <Products>
+      <Product Price="0" Count="3">
+        <Id>5656b9fb-77cd-4e33-b05a-3cd6e6d52483</Id>
+        <Name>Краска для волос</Name>
+        <Note></Note>
+        <Unit>Mg</Unit>
+        <Crushable>true</Crushable>
+        <MinCountInUnits>10</MinCountInUnits>
+        <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
+      </Product>
+      <Product Price="0" Count="3">
+        <Id>f8725713-ffa0-48b7-b492-8ee80a8f6b6e</Id>
+        <Name>Ножницы</Name>
+        <Note></Note>
+        <Unit>Piece</Unit>
+        <Crushable>false</Crushable>
+        <MinCountInUnits>3</MinCountInUnits>
+        <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
+      </Product>
+    </Products>
+    <PaymentDate>2020-04-17T00:00:00</PaymentDate>
+    <ReceptionDate>2020-04-10T00:00:00</ReceptionDate>
+  </Purchase>
+</Purchases>

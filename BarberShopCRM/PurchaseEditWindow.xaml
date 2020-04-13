@@ -6,7 +6,9 @@
         xmlns:resx="clr-namespace:BarberShopCRM.Properties"
         xmlns:local="clr-namespace:BarberShopCRM"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:controllib="clr-namespace:ControlLib;assembly=NumericUpDown"
         xmlns:wpf="http://schemas.microsoft.com/netfx/2007/xaml/presentation" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="PurchaseEditWindow" Height="450" Width="800">
     <Grid>
@@ -43,31 +45,31 @@
                Margin="5"/>
         <ListView Grid.Column="1"
                   Grid.RowSpan="6"
+                  x:Name="addedProductsListView"
                   Margin="15"
+                  ItemsSource="{Binding AddedProducts}"
                   FontSize="15">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Товар"
-                                    Width="250"/>
+                                    Width="250"
+                                    DisplayMemberBinding="{Binding Product.Name}"/>
                     <GridViewColumn Header="Штук"
+                                    DisplayMemberBinding="{Binding Count}"
                                     Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <WindowsFormsHost Grid.Column="1"
-                    Grid.Row="7"
-                    VerticalAlignment="Center"
-                    Margin="15, 5, 15, 5">
-            <wf:DateTimePicker ShowCheckBox="True"/>
-        </WindowsFormsHost>
         <DatePicker Grid.Column="1"
                     Grid.Row="6"
                     VerticalAlignment="Center"
-                    Margin="15, 5, 15, 5"/>
+                    Margin="15, 5, 15, 5"
+                    SelectedDate="{Binding PaymentDate}"/>
         <DatePicker Grid.Column="1"
                     Grid.Row="7"
                     VerticalAlignment="Center"
-                    Margin="15, 5, 15, 5"/>
+                    Margin="15, 5, 15, 5"
+                    SelectedDate="{Binding ReceptionDate}"/>
         <TextBlock Grid.Column="2"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
@@ -91,25 +93,28 @@
                   Width="120"
                   x:Name="availProductsComboBox"
                   ItemsSource="{Binding AvailibleProducts}"
+                  DisplayMemberPath="Name"
+                  SelectedIndex="0"
                   Margin="15"/>
-        <WindowsFormsHost Grid.Column="3"
+        <controllib:NumericUpDown Grid.Column="3"
                           Grid.Row="2"
                           Margin="15"
                           HorizontalAlignment="Left"
-                          Width="80">
-            <wf:NumericUpDown/>
-        </WindowsFormsHost>
+                          Value="{Binding ProductCount, Mode=TwoWay}"
+                          Width="80"/>
         <Button Grid.Column="2"
                 Grid.Row="3"
                 Grid.ColumnSpan="2"
                 FontSize="20"
                 Content="Добавить"
+                Command="{Binding AddProductCommand}"
                 Margin="5"/>
         <Button Grid.Column="2"
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
                 FontSize="20"
                 Content="Удалить"
+                Command="{Binding DeleteProductCommand}"
                 Margin="5"/>
         <Button Grid.Column="2"
                 Grid.Row="6"
@@ -117,6 +122,7 @@
                 Grid.RowSpan="2"
                 FontSize="20"
                 Content="Сохранить и выйти"
+                Command="{Binding SaveAndExitCommand}"
                 Margin="5"/>
     </Grid>
 </Window>

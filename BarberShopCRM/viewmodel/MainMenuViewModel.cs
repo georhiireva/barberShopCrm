@@ -15,6 +15,6 @@ namespace BarberShopCRM.viewmodel {
         public ICommand OpenOddmentsWindow => new Command (() => new OddmentsWindow ().ShowDialog ());
 
         public MainMenuViewModel (Window mainWindow) : base (mainWindow) { }
-        
+         
     }
 }

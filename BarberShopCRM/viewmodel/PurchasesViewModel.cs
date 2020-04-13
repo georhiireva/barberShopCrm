@@ -1,5 +1,6 @@
 ﻿using BarberShopCRM.command;
 using BarberShopCRM.model;
+using BarberShopCRM.model.database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,15 +39,17 @@ namespace BarberShopCRM.viewmodel {
             addPurchaseCommand = new Command (() => AddPurchase ());
             editPurchaseCommand = new Command (() => EditPurchase ());
             deletePurchaseCommand = new Command (() => DeletePurchase ());
+
+            Purchases = Query.Instance.LoadAllPurchases ();
         }
 
         private void AddPurchase () {
-            var newWindow = new PurchaseEditWindow ();
+            var newWindow = new PurchaseEditWindow (new Purchase());
 
             if (newWindow.ShowDialog() == true) {
-
+                Purchases = Query.Instance.LoadAllPurchases ();
             }
-            throw new NotImplementedException ();
+            
         }
         private void EditPurchase () {
             throw new NotImplementedException ();

@@ -20,6 +20,7 @@ namespace BarberShopCRM {
     /// </summary>
     public partial class PurchaseEditWindow : Window {
         private PurchaseEditViewModel viewModel;
+        
         public PurchaseEditWindow () {
             InitializeComponent ();
         }
