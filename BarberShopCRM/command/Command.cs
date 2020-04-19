@@ -10,7 +10,7 @@ namespace BarberShopCRM.command {
     public class Command : ICommand {
         public event EventHandler CanExecuteChanged;
         private Action execute;
-
+        Logger logger = new Logger (nameof (Command));
         public Command (Action execute) => this.execute = execute;
         
         public bool CanExecute (object parameter) {
@@ -21,6 +21,7 @@ namespace BarberShopCRM.command {
             try {
                 execute ();
             } catch (Exception e) {
+                logger.log (e.StackTrace);
                 MessageBox.Show (e.Message,"Ошибка");
             }
             

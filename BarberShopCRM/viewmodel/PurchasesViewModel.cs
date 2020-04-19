@@ -32,7 +32,7 @@ namespace BarberShopCRM.viewmodel {
             }
         }
 
-        private Purchase SelectedProduct => ((PurchasesWindow)window).SelectedPurchase;
+        private Purchase SelectedPurchase => ((PurchasesWindow)window).SelectedPurchase;
         public PurchasesViewModel (Window window) : base (window) {
             logger = new Logger (this.GetType ().Name);
 
@@ -44,7 +44,7 @@ namespace BarberShopCRM.viewmodel {
         }
 
         private void AddPurchase () {
-            var newWindow = new PurchaseEditWindow (new Purchase());
+            var newWindow = new PurchaseEditWindow ();
 
             if (newWindow.ShowDialog() == true) {
                 Purchases = Query.Instance.LoadAllPurchases ();
@@ -52,10 +52,20 @@ namespace BarberShopCRM.viewmodel {
             
         }
         private void EditPurchase () {
-            throw new NotImplementedException ();
+            var newWindow = new PurchaseEditWindow (SelectedPurchase);
+
+            if (newWindow.ShowDialog () == true) {
+                Purchases = Query.Instance.LoadAllPurchases ();
+            }
         }
         private void DeletePurchase () {
-            throw new NotImplementedException ();
+            var result = MessageBox.Show ("Вы действительно хотите удалить закупку?", "Предупреждение", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+                return;
+            else {
+                Query.Instance.Delete (SelectedPurchase);
+                Purchases = Query.Instance.LoadAllPurchases ();
+            }
         }
     }
 }

@@ -4,14 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Linq;
 
 namespace BarberShopCRM.model {
     abstract public class AbstractXmlHolder : IXmlHolder {
 
         public void Add (IXmlStorable obj) {
-            if (IsExist (obj))
-                throw new DatabaseDuplicateException ("Объект уже существует в базе данных!");
+            if (IsExist (obj)) {
+                var result = MessageBox.Show (
+                    "Объект уже существует в базе данных. Хотите заменить его?",
+                    "Предупреждение",
+                    MessageBoxButton.YesNo
+                    );
+                if (result == MessageBoxResult.No) {
+                    return;
+                }
+                else {
+                    Delete (obj);
+                }
+
+            }
             var xml = XElement.Load (obj.FilePath);
             obj.Id = Guid.NewGuid ().ToString ();
             var xmlObject = obj.MapToXml ();
@@ -19,10 +32,14 @@ namespace BarberShopCRM.model {
             xml.Save (obj.FilePath);
         }
 
-        public void Delete (IXmlStorable obj) {
-            if (!IsExist (obj)) 
-                throw new DatabaseNotFoundException ($"Объект ({obj.GetType().Name} Id: {obj.Id}) не найден в базе данных");
-
+        public void Delete (IXmlStorable obj, bool withNotification = false) {
+            if (!IsExist (obj))
+                throw new DatabaseNotFoundException ($"Объект ({obj.GetType ().Name} Id: {obj.Id}) не найден в базе данных");
+            if (withNotification) {
+                var result = MessageBox.Show ("Вы действительно хотите удалить объект?", "Предупреждение", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.No) 
+                    return;
+            }
             var xml = XElement.Load (obj.FilePath);
             var xmlObject = Find (obj, xml);
             xmlObject.Remove ();

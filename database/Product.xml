@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
   <Product>
-    <Id>5656b9fb-77cd-4e33-b05a-3cd6e6d52483</Id>
-    <Name>Краска для волос</Name>
-    <Note />
-    <Unit>Mg</Unit>
-    <Crushable>true</Crushable>
-    <MinCountInUnits>10</MinCountInUnits>
-    <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
-  </Product>
-  <Product>
     <Id>d192d332-0796-465f-90ba-f210c926b224</Id>
     <Name>Бумажное полотенце</Name>
     <Note />
@@ -40,6 +31,15 @@
     <Id>b40ade6d-55c9-43c1-bf37-da75f94c1607</Id>
     <Name>Лак для ногтей</Name>
     <Note />
+    <Unit>Mg</Unit>
+    <Crushable>true</Crushable>
+    <MinCountInUnits>10</MinCountInUnits>
+    <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
+  </Product>
+  <Product>
+    <Id>e1bf18ef-430b-45cf-adc2-66f03494d78e</Id>
+    <Name>Краска для волос</Name>
+    <Note>Светлый оттенок</Note>
     <Unit>Mg</Unit>
     <Crushable>true</Crushable>
     <MinCountInUnits>10</MinCountInUnits>

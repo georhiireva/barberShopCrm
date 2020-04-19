@@ -10,21 +10,21 @@ using System.Xml.Linq;
 namespace BarberShopCRM.model {
     public class Purchase : IXmlStorable {
         public string Id { get; set; }
-        public IDictionary<ProductWrapper, double> ProductsWithPrices { get; set; }
+        public IList<ProductWrapper> ProductsWithPrices { get; set; }
         public DateTime PaymentDate { get; set; }
         public DateTime ReceptionDate { get; set; }
 
-        public double Price => ProductsWithPrices.Values.Sum ();
+        public double Price => ProductsWithPrices.Select (elt => elt.Price * elt.Count).Sum ();
         
 
         public string Products {
             get {
                 var result = new StringBuilder ();
-                foreach (var product in ProductsWithPrices.Keys) {
+                foreach (var product in ProductsWithPrices) {
                     result.Append (product.Count);
                     result.Append ("x ");
                     result.Append (product.Product.Name);
-                    if(product != ProductsWithPrices.Keys.Last())
+                    if(product != ProductsWithPrices.Last())
                         result.Append (", ");
                 }
                 return result.ToString ();
@@ -45,9 +45,9 @@ namespace BarberShopCRM.model {
             var result = new XElement ("Purchase");
             var productsXml = new XElement ("Products");
             foreach (var product in this.ProductsWithPrices) {
-                var productXml = product.Key.Product.MapToXml ();
-                productXml.SetAttributeValue ("Price", product.Value);
-                productXml.SetAttributeValue ("Count", product.Key.Count);
+                var productXml = product.Product.MapToXml ();
+                productXml.SetAttributeValue ("Price", product.Price);
+                productXml.SetAttributeValue ("Count", product.Count);
                 productsXml.Add (productXml);
             }
             result.Add (new XElement ("Id", this.Id));
@@ -57,13 +57,13 @@ namespace BarberShopCRM.model {
             return result;
         }
 
-        private IDictionary<ProductWrapper, double> GetProductsWithPricesFromPurchase (XElement products) {
-            var result = new Dictionary<ProductWrapper, double> ();
+        private IList<ProductWrapper> GetProductsWithPricesFromPurchase (XElement products) {
+            var result = new List<ProductWrapper> ();
             foreach (var xmlProductWithPrice in products.Elements ()) {
                 var product = new Product ().MapFromXml (xmlProductWithPrice) as Product;
                 var count = (int)xmlProductWithPrice.Attribute ("Count");
                 var price = (double)xmlProductWithPrice.Attribute ("Price");
-                result.Add (new ProductWrapper () { Product = product, Count = count }, price);
+                result.Add (new ProductWrapper () { Product = product, Count = count, Price = price });
             }
             return result;
         }

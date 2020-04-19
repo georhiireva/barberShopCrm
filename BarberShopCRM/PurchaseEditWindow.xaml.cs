@@ -23,10 +23,11 @@ namespace BarberShopCRM {
         
         public PurchaseEditWindow () {
             InitializeComponent ();
+            DataContext = viewModel = new PurchaseEditViewModel (this);
         }
         public PurchaseEditWindow (Purchase purchase) {
             InitializeComponent ();
-            DataContext = viewModel = new PurchaseEditViewModel (this);
+            DataContext = viewModel = new PurchaseEditViewModel (this, purchase);
         }
     }
 }
