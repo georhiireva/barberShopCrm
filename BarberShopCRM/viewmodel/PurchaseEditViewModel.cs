@@ -47,8 +47,6 @@ namespace BarberShopCRM.viewmodel {
                 if(productCount != value) {
                     productCount = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof(ProductCount)));
-                    SelectedProduct.Count = productCount;
-                    RefreshAddedProducts ();
                 }
             }
         }
@@ -58,15 +56,16 @@ namespace BarberShopCRM.viewmodel {
                 if (productPrice != value) {
                     productPrice = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (ProductPrice)));
-                    SelectedProduct.Price = productPrice;
-                    RefreshAddedProducts ();
                 }
             }
         }
 
         private void RefreshAddedProducts () {
+            if (AddedProducts == null || AddedProducts.Count == 0)
+                return;
             AddedProducts.Remove (SelectedProduct);
             AddedProducts.Add (SelectedProduct);
+            SelectedProduct = null;
         }
 
         public DateTime PaymentDate {
@@ -111,30 +110,31 @@ namespace BarberShopCRM.viewmodel {
             editingPurchase = new Purchase();
             PaymentDate = DateTime.Now;
             ReceptionDate = DateTime.Now;
-            ProductCount = 1;
-            ProductPrice = 0;
         }
 
         public PurchaseEditViewModel(Window window, Purchase purchase) : base(window) {
-            Init ();
             AddedProducts = purchase.ProductsWithPrices != null 
                 ? new ObservableCollection<ProductWrapper> (purchase.ProductsWithPrices)
                 : new ObservableCollection<ProductWrapper> ();
+            Init (purchase);
             editingPurchase = purchase;
             PaymentDate = purchase.PaymentDate != null ? purchase.PaymentDate : DateTime.Now;
             ReceptionDate = purchase.ReceptionDate != null ? purchase.ReceptionDate : DateTime.Now;
-            ProductCount = SelectedProduct != null ? SelectedProduct.Count : 1;
-            ProductPrice = SelectedProduct != null ? SelectedProduct.Price : 0;
         }
 
-        private void Init() {
+        private void Init(Purchase purchase) {
+            Init ();
+            SelectedProduct = purchase?.ProductsWithPrices.First ();
+        }
+
+        public void Init() {
             addProductCommand = new Command (() => AddProduct ());
             deleteProductCommand = new Command (() => DeleteProduct ());
             saveAndExitCommand = new Command (() => SaveAndExit ());
             AvailibleProducts = Query.Instance.LoadAllProducts ().ToList ();
             var peWindow = (PurchaseEditWindow)window;
             peWindow.addedProductsListView.SelectionChanged += SelectedProductChanged;
-            SelectedProduct = (ProductWrapper)((PurchaseEditWindow)window).addedProductsListView.SelectedItem;
+            SelectedProduct = new ProductWrapper () {Product = AvailibleProducts.First(), Count = 1, Price = 0 };
         }
 
         private void SelectedProductChanged (object sender, System.Windows.Controls.SelectionChangedEventArgs e) {

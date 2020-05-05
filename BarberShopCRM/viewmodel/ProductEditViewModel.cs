@@ -94,6 +94,7 @@ namespace BarberShopCRM.viewmodel {
 
         public ProductEditViewModel (Window window) : base (window) {
             editingProduct = new Product ();
+            editingProduct.Unit = Unit.Piece;
             addProductCommand = new Command (() => AddProduct ());
             logger.log (nameof (ProductEditViewModel), "Вызван конструкор с одним параметром. Временный продукт создан.");
         }

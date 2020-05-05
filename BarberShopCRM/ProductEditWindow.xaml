@@ -61,7 +61,8 @@
                   Grid.Row="2"
                   Margin="5"
                   IsChecked="{Binding Crushable}"
-                  VerticalContentAlignment="Center">
+                  VerticalContentAlignment="Center"
+                  x:Name="isParticularId">
             <Label Content="Расходуется частями"
                    FontSize="20"/>
         </CheckBox>
@@ -70,6 +71,7 @@
                           Margin="20"
                           HorizontalAlignment="Left"
                           Width="150"
+                          IsEnabled="{Binding ElementName=isParticularId, Path=IsChecked}"       
                           Value="{Binding UnitsInOnePieceCount, Mode=TwoWay}">
         </controllib:NumericUpDown>
         <ComboBox Grid.Column="1"
@@ -78,6 +80,7 @@
                   Width="150"
                   ItemsSource="{Binding Units}"
                   SelectedItem="{Binding Unit}"
+                  IsEnabled="{Binding ElementName=isParticularId, Path=IsChecked}" 
                   HorizontalAlignment="Left"/>
         <controllib:NumericUpDown Grid.Column="1"
                           Grid.Row="5"

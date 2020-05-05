@@ -51,9 +51,18 @@
     <ReceptionDate>2020-04-19T14:30:54.5251855+03:00</ReceptionDate>
   </Purchase>
   <Purchase>
-    <Id>715eb925-482a-4fb1-9855-81618e9566f6</Id>
+    <Id>179c81ac-6070-4fd5-8281-56646ac412c1</Id>
     <Products>
-      <Product Price="500" Count="6">
+      <Product Price="300" Count="3">
+        <Id>d192d332-0796-465f-90ba-f210c926b224</Id>
+        <Name>Бумажное полотенце</Name>
+        <Note></Note>
+        <Unit>Piece</Unit>
+        <Crushable>false</Crushable>
+        <MinCountInUnits>50</MinCountInUnits>
+        <UnitsInOnePieceCount>0</UnitsInOnePieceCount>
+      </Product>
+      <Product Price="500" Count="3">
         <Id>b40ade6d-55c9-43c1-bf37-da75f94c1607</Id>
         <Name>Лак для ногтей</Name>
         <Note></Note>
@@ -62,17 +71,8 @@
         <MinCountInUnits>10</MinCountInUnits>
         <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
       </Product>
-      <Product Price="600" Count="7">
-        <Id>e1bf18ef-430b-45cf-adc2-66f03494d78e</Id>
-        <Name>Краска для волос</Name>
-        <Note>Светлый оттенок</Note>
-        <Unit>Mg</Unit>
-        <Crushable>true</Crushable>
-        <MinCountInUnits>10</MinCountInUnits>
-        <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
-      </Product>
     </Products>
-    <PaymentDate>2019-01-17T00:00:00</PaymentDate>
-    <ReceptionDate>2020-01-17T00:00:00</ReceptionDate>
+    <PaymentDate>2020-05-05T23:08:45.4499886+03:00</PaymentDate>
+    <ReceptionDate>2020-05-05T23:08:45.4499886+03:00</ReceptionDate>
   </Purchase>
 </Purchases>

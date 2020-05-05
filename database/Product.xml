@@ -45,4 +45,13 @@
     <MinCountInUnits>10</MinCountInUnits>
     <UnitsInOnePieceCount>100</UnitsInOnePieceCount>
   </Product>
+  <Product>
+    <Id>c794fd7c-d64a-491c-9bee-3218d0471680</Id>
+    <Name>Чай</Name>
+    <Note />
+    <Unit>Kg</Unit>
+    <Crushable>true</Crushable>
+    <MinCountInUnits>20</MinCountInUnits>
+    <UnitsInOnePieceCount>10</UnitsInOnePieceCount>
+  </Product>
 </Products>
