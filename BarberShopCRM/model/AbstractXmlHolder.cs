@@ -1,6 +1,7 @@
 ﻿using BarberShopCRM.exception;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace BarberShopCRM.model {
                 }
 
             }
+
             var xml = XElement.Load (obj.FilePath);
             obj.Id = Guid.NewGuid ().ToString ();
             var xmlObject = obj.MapToXml ();
@@ -37,7 +39,7 @@ namespace BarberShopCRM.model {
                 throw new DatabaseNotFoundException ($"Объект ({obj.GetType ().Name} Id: {obj.Id}) не найден в базе данных");
             if (withNotification) {
                 var result = MessageBox.Show ("Вы действительно хотите удалить объект?", "Предупреждение", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.No) 
+                if (result == MessageBoxResult.No)
                     return;
             }
             var xml = XElement.Load (obj.FilePath);

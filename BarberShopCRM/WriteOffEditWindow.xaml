@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BarberShopCRM"
         xmlns:resx="clr-namespace:BarberShopCRM.Properties"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:controllib="clr-namespace:ControlLib;assembly=NumericUpDown"
         xmlns:wpf="http://schemas.microsoft.com/netfx/2007/xaml/presentation" 
         mc:Ignorable="d"
         Title="WriteOffEditWindow" Height="450" Width="800">
@@ -38,25 +39,26 @@
                Margin="5"/>
         <ListView Grid.Column="1"
                   Grid.RowSpan="6"
+                  x:Name="addedProductsListView"
+                  ItemsSource="{Binding AddedProducts}"
                   Margin="15"
                   FontSize="15">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Товар"
-                                    Width="250"/>
+                                    Width="250"
+                                    DisplayMemberBinding="{Binding Product.Name}"/>
                     <GridViewColumn Header="Штук"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Count}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <DatePicker Grid.Column="1"
                     Grid.Row="6"
                     VerticalAlignment="Center"
+                    SelectedDate="{Binding WriteOffDate}"
                     Margin="15, 5, 15, 5"/>
-        <!--<DatePicker Grid.Column="1"
-                    Grid.Row="7"
-                    VerticalAlignment="Center"
-                    Margin="15, 5, 15, 5"/>-->
         <TextBlock Grid.Column="2"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
@@ -76,27 +78,43 @@
                Content="Количество:"/>
         <ComboBox Grid.Column="3"
                   Grid.Row="1"
+                  x:Name="availProductsComboBox"
+                  ItemsSource="{Binding AvailibleProducts}"
+                  DisplayMemberPath="Name"
+                  SelectedIndex="0"
                   HorizontalAlignment="Left"
                   Width="120"
                   Margin="15"/>
-        <WindowsFormsHost Grid.Column="3"
-                          Grid.Row="2"
-                          Margin="15"
-                          HorizontalAlignment="Left"
-                          Width="80">
-            <wf:NumericUpDown/>
-        </WindowsFormsHost>
-        <Button Grid.Column="2"
-                Grid.Row="3"
-                Grid.ColumnSpan="2"
-                FontSize="20"
-                Content="Добавить"
-                Margin="5"/>
+        <controllib:NumericUpDown Grid.Column="3"
+                                  Grid.Row="2"
+                                  Margin="15"
+                                  HorizontalAlignment="Left"
+                                  Value="{Binding ProductCount, Mode=TwoWay}"
+                                  Width="80"
+                                  MaxValue="999" 
+                                  MinValue="1"/>
+        <Label Grid.Column="2"
+               Grid.Row="3"
+               VerticalAlignment="Center"
+               FontSize="15"
+               Content="Мастер:"/>
+        <TextBox Grid.Column="3"
+                 Grid.Row="3"
+                 Margin="10"
+                 Text="{Binding MasterName}"/>
         <Button Grid.Column="2"
                 Grid.Row="4"
                 Grid.ColumnSpan="2"
                 FontSize="20"
+                Content="Добавить"
+                Command="{Binding AddProductCommand}"
+                Margin="5"/>
+        <Button Grid.Column="2"
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                FontSize="20"
                 Content="Удалить"
+                Command="{Binding DeleteProductCommand}"
                 Margin="5"/>
         <Button Grid.Column="2"
                 Grid.Row="6"
@@ -104,6 +122,7 @@
                 Grid.RowSpan="2"
                 FontSize="20"
                 Content="Сохранить и выйти"
+                Command="{Binding SaveAndExitCommand}"
                 Margin="5"/>
     </Grid>
 </Window>

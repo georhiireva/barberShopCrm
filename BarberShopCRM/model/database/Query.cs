@@ -44,6 +44,13 @@ namespace BarberShopCRM.model.database {
                 select new Purchase ().MapFromXml (elt) as Purchase;
         }
 
+        public IEnumerable<WriteOff> LoadAllWriteOffs () {
+            var rows = LoadFile (WriteOffFilePath, "WriteOffs").Elements ();
+            return
+                from elt in rows
+                select new WriteOff ().MapFromXml (elt) as WriteOff;
+        }
+
         private XElement LoadFile (string filePath, string root) {
             if (!File.Exists (filePath))
                 new XElement (root).Save (filePath);

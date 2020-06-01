@@ -23,26 +23,40 @@
         <Button Grid.Column="1"
                 Margin="5"
                 FontSize="30"
-                Content="Добавить" Click="OpenWriteOffEditWindow"/>
+                Content="Добавить" 
+                Command="{Binding AddWriteOffCommand}"/>
         <Button Grid.Column="1"
                 Grid.Row="1"
                 Margin="5"
                 FontSize="30"
-                Content="Изменить"/>
+                Content="Изменить"
+                Command="{Binding EditWriteOffCommand}"/>
         <Button Grid.Column="1"
                 Grid.Row="2"
                 Margin="5"
                 FontSize="30"
-                Content="Удалить"/>
+                Content="Удалить"
+                Command="{Binding DeleteWriteOffCommand}"/>
         <Button Grid.Column="1"
                 Grid.Row="4"
                 Margin="5"
                 FontSize="30"
-                Content="Главное меню"/>
-
+                Content="Главное меню"
+                Command="{Binding ExitCommand}"/>
         <ListView Grid.RowSpan="5"
+                  x:Name="writeOffList"
+                  ItemsSource="{Binding WriteOffList}"
                   Margin="5">
-
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Мастер"
+                                    DisplayMemberBinding="{Binding MasterName}"/>
+                    <GridViewColumn Header="Дата"
+                                    DisplayMemberBinding="{Binding WriteOffDate}"/>
+                    <GridViewColumn Header="Товары"
+                                    DisplayMemberBinding="{Binding Products}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>

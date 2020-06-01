@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BarberShopCRM.model;
+using BarberShopCRM.viewmodel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +19,11 @@ namespace BarberShopCRM {
     /// Логика взаимодействия для WriteOffWindow.xaml
     /// </summary>
     public partial class WriteOffWindow : Window {
-        private WriteOffEditWindow writeOffEditWindow;
+        private WriteOffViewModel viewModel;
+        public WriteOff SelectedWriteOff => (WriteOff)this.writeOffList.SelectedItem;
         public WriteOffWindow () {
             InitializeComponent ();
-        }
-
-        private void OpenWriteOffEditWindow (object sender, RoutedEventArgs e) {
-            writeOffEditWindow = new WriteOffEditWindow ();
-            writeOffEditWindow.ShowDialog ();
+            DataContext = viewModel = new WriteOffViewModel (this);
         }
     }
 }

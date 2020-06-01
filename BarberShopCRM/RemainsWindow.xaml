@@ -1,0 +1,40 @@
+﻿<Window x:Class="BarberShopCRM.RemainsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BarberShopCRM"
+        mc:Ignorable="d"
+        Title="RemainsWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.RowSpan="2"
+                  Margin="5"
+                  x:Name="remainsList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Товар"
+                                    DisplayMemberBinding="{Binding}"/>
+                    <GridViewColumn Header="Кол-во упак."
+                                    DisplayMemberBinding="{Binding}"/>
+                    <GridViewColumn Header="Кол-во открыт."
+                                    DisplayMemberBinding="{Binding}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Grid.Column="1"
+                FontSize="18"
+                Margin="10"
+                x:Name="exitButton"
+                Command="{Binding }">
+            Главное меню
+        </Button>
+    </Grid>
+</Window>

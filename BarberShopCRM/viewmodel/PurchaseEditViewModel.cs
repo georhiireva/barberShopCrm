@@ -94,7 +94,7 @@ namespace BarberShopCRM.viewmodel {
                 if(selectedProduct != value && value != null) {
                     selectedProduct = value;
                     OnPropertyChanged (this, new System.ComponentModel.PropertyChangedEventArgs (nameof (SelectedProduct)));
-                    ProductCount = selectedProduct.Count;
+                    ProductCount = selectedProduct.ClosedCount;
                     ProductPrice = selectedProduct.Price;
                     ((PurchaseEditWindow)window).availProductsComboBox.SelectedItem = AvailibleProducts
                         .Where (elt => ((Product)elt).Name == selectedProduct.Product.Name).First ();
@@ -134,7 +134,7 @@ namespace BarberShopCRM.viewmodel {
             AvailibleProducts = Query.Instance.LoadAllProducts ().ToList ();
             var peWindow = (PurchaseEditWindow)window;
             peWindow.addedProductsListView.SelectionChanged += SelectedProductChanged;
-            SelectedProduct = new ProductWrapper () {Product = AvailibleProducts.First(), Count = 1, Price = 0 };
+            SelectedProduct = new ProductWrapper () {Product = AvailibleProducts.First(), ClosedCount = 1, Price = 0 };
         }
 
         private void SelectedProductChanged (object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
@@ -146,7 +146,7 @@ namespace BarberShopCRM.viewmodel {
             if (AddedProducts.Where(elt => elt.Product.Name == product.Name).Count() > 0) {
                 throw new Exception ($"{product.Name} уже добавлен!");
             }
-            AddedProducts.Add (new ProductWrapper () {Product = product, Count = ProductCount, Price = ProductPrice });
+            AddedProducts.Add (new ProductWrapper () {Product = product, ClosedCount = ProductCount, Price = ProductPrice });
         }
         private void DeleteProduct () {
             var removableProductWrapper = (ProductWrapper)((PurchaseEditWindow)window).addedProductsListView.SelectedItem;
